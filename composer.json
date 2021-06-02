@@ -1,0 +1,23 @@
+{
+    "name": "audentio/sportsdataio-php-generator",
+    "description": "Library to generate a PHP consumer client for Sportsdata.io API",
+    "type": "library",
+    "require": {
+        "jane-php/open-api-2": "^7.0",
+        "jane-php/open-api-3": "^7.0",
+        "jane-php/open-api-runtime": "^7.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.3",
+        "mikehaertl/php-tmpfile": "^1.2",
+        "splitbrain/php-cli": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Audentio\\SportsdataioPhpGenerator\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
+    }
+}

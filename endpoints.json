@@ -1,0 +1,155 @@
+{
+  "NFL": {
+    "type": "sports",
+    "routes-v3": {
+      "play-by-play": "https://sportsdata.io/downloads/swagger/nfl-v3-play-by-play.json",
+      "projections": "https://sportsdata.io/downloads/swagger/nfl-v3-projections.json",
+      "rotoballer-articles": "https://sportsdata.io/downloads/swagger/nfl-v3-rotoballer-articles.json",
+      "rotoballer-premium-news": "https://sportsdata.io/downloads/swagger/nfl-v3-rotoballer-premium-news.json",
+      "scores": "https://sportsdata.io/downloads/swagger/nfl-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/nfl-v3-stats.json",
+      "odds": "https://sportsdata.io/downloads/swagger/nfl-v3-odds.json",
+      "advanced-metrics": "https://sportsdata.io/downloads/swagger/nfl-v3-advanced-metrics.json",
+      "headshots": "https://sportsdata.io/downloads/swagger/nfl-v3-headshots.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "MLB": {
+    "type": "sports",
+    "routes-v3": {
+      "play-by-play": "https://sportsdata.io/downloads/swagger/mlb-v3-play-by-play.json",
+      "projections": "https://sportsdata.io/downloads/swagger/mlb-v3-projections.json",
+      "rotoballer-articles": "https://sportsdata.io/downloads/swagger/mlb-v3-rotoballer-articles.json",
+      "rotoballer-premium-news": "https://sportsdata.io/downloads/swagger/mlb-v3-rotoballer-premium-news.json",
+      "scores": "https://sportsdata.io/downloads/swagger/mlb-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/mlb-v3-stats.json",
+      "odds": "https://sportsdata.io/downloads/swagger/mlb-v3-odds.json",
+      "headshots": "https://sportsdata.io/downloads/swagger/mlb-v3-headshots.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "NBA": {
+    "type": "sports",
+    "routes-v3": {
+      "play-by-play": "https://sportsdata.io/downloads/swagger/nba-v3-play-by-play.json",
+      "projections": "https://sportsdata.io/downloads/swagger/nba-v3-projections.json",
+      "rotoballer-articles": "https://sportsdata.io/downloads/swagger/nba-v3-rotoballer-articles.json",
+      "rotoballer-premium-news": "https://sportsdata.io/downloads/swagger/nba-v3-rotoballer-premium-news.json",
+      "scores": "https://sportsdata.io/downloads/swagger/nba-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/nba-v3-stats.json",
+      "odds": "https://sportsdata.io/downloads/swagger/nba-v3-odds.json",
+      "headshots": "https://sportsdata.io/downloads/swagger/nba-v3-headshots.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "NHL": {
+    "type": "sports",
+    "routes-v3": {
+      "play-by-play": "https://sportsdata.io/downloads/swagger/nhl-v3-play-by-play.json",
+      "projections": "https://sportsdata.io/downloads/swagger/nhl-v3-projections.json",
+      "scores": "https://sportsdata.io/downloads/swagger/nhl-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/nhl-v3-stats.json",
+      "odds": "https://sportsdata.io/downloads/swagger/nhl-v3-odds.json",
+      "headshots": "https://sportsdata.io/downloads/swagger/nhl-v3-headshots.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "CBB": {
+    "type": "college-sports",
+    "routes-v3": {
+      "scores": "https://sportsdata.io/downloads/swagger/cbb-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/cbb-v3-stats.json",
+      "odds": "https://sportsdata.io/downloads/swagger/cbb-v3-odds.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "CFB": {
+    "type": "college-sports",
+    "routes-v3": {
+      "scores": "https://sportsdata.io/downloads/swagger/cfb-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/cfb-v3-stats.json",
+      "odds": "https://sportsdata.io/downloads/swagger/cfb-v3-odds.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "Golf": {
+    "type": "sports",
+    "routes-v3": {
+      "headshots": "https://sportsdata.io/downloads/swagger/golf-v3-headshots.json"
+    },
+    "routes-v2": {
+      "general": "https://sportsdata.io/downloads/swagger/golf-v2.json"
+    }
+  },
+  "Nascar": {
+    "type": "sports",
+    "routes-v3": {
+    },
+    "routes-v2": {
+      "general": "https://sportsdata.io/downloads/swagger/nascar-v2.json"
+    }
+  },
+  "Soccer": {
+    "type": "sports",
+    "routes-v3": {
+      "projections": "https://sportsdata.io/downloads/swagger/soccer-v3-projections.json",
+      "scores": "https://sportsdata.io/downloads/swagger/soccer-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/soccer-v3-stats.json",
+      "odds": "https://sportsdata.io/downloads/swagger/soccer-v3-odds.json",
+      "headshots": "https://sportsdata.io/downloads/swagger/soccer-v3-headshots.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "MMA": {
+    "type": "sports",
+    "routes-v3": {
+      "scores": "https://sportsdata.io/downloads/swagger/mma-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/mma-v3-stats.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "WNBA": {
+    "type": "sports",
+    "routes-v3": {
+      "scores": "https://sportsdata.io/downloads/swagger/wnba-v3-scores.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "CWBB": {
+    "type": "sports",
+    "routes-v3": {
+      "scores": "https://sportsdata.io/downloads/swagger/cwbb-v3-scores.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "LOL": {
+    "type": "esports",
+    "routes-v3": {
+      "projections": "https://sportsdata.io/downloads/swagger/lol-v3-projections.json",
+      "scores": "https://sportsdata.io/downloads/swagger/lol-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/lol-v3-stats.json"
+    },
+    "routes-v2": {
+    }
+  },
+  "CSGO": {
+    "type": "esports",
+    "routes-v3": {
+      "projections": "https://sportsdata.io/downloads/swagger/csgo-v3-projections.json",
+      "scores": "https://sportsdata.io/downloads/swagger/csgo-v3-scores.json",
+      "stats": "https://sportsdata.io/downloads/swagger/csgo-v3-stats.json"
+    },
+    "routes-v2": {
+    }
+  }
+}

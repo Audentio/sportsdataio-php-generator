@@ -1,0 +1,5 @@
+/vendor/
+/output/
+/temp/
+.idea
+config.json
