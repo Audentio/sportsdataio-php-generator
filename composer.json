@@ -2,6 +2,7 @@
     "name": "audentio/sportsdataio-php-generator",
     "description": "Library to generate a PHP consumer client for Sportsdata.io API",
     "type": "library",
+    "license": "MIT",
     "require": {
         "jane-php/open-api-2": "^7.0",
         "jane-php/open-api-3": "^7.0",
