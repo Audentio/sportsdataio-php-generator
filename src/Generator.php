@@ -69,7 +69,7 @@ class Generator extends CLI
             mkdir($tempDir, 0777, true);
         }
         $dirSep = DIRECTORY_SEPARATOR;
-        $janeSchema = new File(json_encode($fullSchema, JSON_PRETTY_PRINT), '.json');
+        $janeSchema = new File(str_replace("\/", '/', json_encode($fullSchema, JSON_PRETTY_PRINT)), '.json');
         $tempSchema = $tempDir . $dirSep . 'jane-schema.json';
         $janeSchema->saveAs($tempSchema);
 
@@ -105,6 +105,7 @@ class Generator extends CLI
     protected function requestSchemasAndMerge(string $endpoint, array $routes): array
     {
         $fullSchema = [];
+        $seenOperationIds = [];
 
         foreach ($routes as $route => $routeUrl) {
             if (!in_array($route, $this->config['routes'])) {
@@ -133,18 +134,79 @@ class Generator extends CLI
             foreach ($json['paths'] as $path => $pathConfig) {
                 $path = '/' . $pathPrefix . $path;
                 foreach($pathConfig as $operation => &$operationConfig) {
+                    if(in_array($operationConfig['operationId'], $seenOperationIds)) {
+                        // Already retrieved endpoint from different definition file
+                        unset($pathConfig[$operation]);
+                        continue;
+                    }
+
+                    $seenOperationIds[] = $operationConfig['operationId'];
+
+                    usort($operationConfig['parameters'], function($param1, $param2) {
+                        // Sort format to end
+                        if($param1['name'] == 'format') {
+                            return 1;
+                        }
+                        if($param2['name'] == 'format') {
+                            return -1;
+                        }
+
+                        // Sort parameters with default values to back
+                        if($param1['default'] ?? false) {
+                            return 1;
+                        }
+                        if($param2['default'] ?? false) {
+                            return -1;
+                        }
+
+                        // Sort required parameters to front
+                        if($param1['required'] ?? false) {
+                            return -1;
+                        }
+                        if($param2['required'] ?? false) {
+                            return 1;
+                        }
+
+                        // Keep remaining order
+                        return -1;
+                    });
+
+                    foreach($operationConfig['parameters'] as &$parameter) {
+                        switch($parameter['name']) {
+                            case 'format':
+                                $parameter['default'] = 'JSON';
+                                $parameter['enum'] = ['JSON', 'XML'];
+                                break;
+                        }
+                    }
+
                     foreach ($operationConfig['responses'] as &$opResponse) {
                         $opResponse['description'] = $opResponse['description'] ?? "";
                     }
                 }
+
                 $fullSchema['paths'][$path] = $pathConfig;
             }
-            foreach ($json['definitions'] as $definition => $definitionConfig) {
+
+            foreach ($json['definitions'] as $definition => &$definitionConfig) {
                 $fullSchema['definitions'][$definition] = $definitionConfig;
             }
         }
 
+        $this->swapNullable($fullSchema);
         return $fullSchema;
+    }
+
+    protected function swapNullable(array &$item) {
+        foreach($item as $key => &$value) {
+            if(is_array($value)) {
+                $this->swapNullable($value);
+            }
+            elseif($key == 'nullable') {
+                $item['x-nullable'] = $item['nullable'];
+                unset($item['nullable']);
+            }
+        }
     }
 
     /**
