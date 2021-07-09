@@ -204,7 +204,7 @@ class Generator extends CLI
             }
             elseif($key == 'nullable') {
                 $item['x-nullable'] = $item['nullable'];
-                unset($item['nullable']);
+                // unset($item['nullable']);
             }
         }
     }
