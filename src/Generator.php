@@ -89,10 +89,9 @@ class Generator extends CLI
         $result = exec($execFilePath . ' generate --config-file="' . $tempConfig . '"', $output, $exitCode);
         $output = join("\n", array_filter(array_map('trim', $output)));
 
-        if($output || $result === false || $exitCode != 0) {
+        if ($output || $result === false || $exitCode != 0) {
             $this->error('Could not generate library for endpoint: ' . $endpoint);
-        }
-        else {
+        } else {
             $this->success('Generated library for endpoint: ' . $endpoint);
         }
     }
@@ -133,8 +132,8 @@ class Generator extends CLI
 
             foreach ($json['paths'] as $path => $pathConfig) {
                 $path = '/' . $pathPrefix . $path;
-                foreach($pathConfig as $operation => &$operationConfig) {
-                    if(in_array($operationConfig['operationId'], $seenOperationIds)) {
+                foreach ($pathConfig as $operation => &$operationConfig) {
+                    if (in_array($operationConfig['operationId'], $seenOperationIds)) {
                         // Already retrieved endpoint from different definition file
                         unset($pathConfig[$operation]);
                         continue;
@@ -142,28 +141,28 @@ class Generator extends CLI
 
                     $seenOperationIds[] = $operationConfig['operationId'];
 
-                    usort($operationConfig['parameters'], function($param1, $param2) {
+                    usort($operationConfig['parameters'], function ($param1, $param2) {
                         // Sort format to end
-                        if($param1['name'] == 'format') {
+                        if ($param1['name'] == 'format') {
                             return 1;
                         }
-                        if($param2['name'] == 'format') {
+                        if ($param2['name'] == 'format') {
                             return -1;
                         }
 
                         // Sort parameters with default values to back
-                        if($param1['default'] ?? false) {
+                        if ($param1['default'] ?? false) {
                             return 1;
                         }
-                        if($param2['default'] ?? false) {
+                        if ($param2['default'] ?? false) {
                             return -1;
                         }
 
                         // Sort required parameters to front
-                        if($param1['required'] ?? false) {
+                        if ($param1['required'] ?? false) {
                             return -1;
                         }
-                        if($param2['required'] ?? false) {
+                        if ($param2['required'] ?? false) {
                             return 1;
                         }
 
@@ -171,14 +170,21 @@ class Generator extends CLI
                         return -1;
                     });
 
-                    foreach($operationConfig['parameters'] as &$parameter) {
-                        switch($parameter['name']) {
+                    foreach ($operationConfig['parameters'] as &$parameter) {
+                        switch ($parameter['name']) {
                             case 'format':
                                 $parameter['default'] = 'JSON';
                                 $parameter['enum'] = ['JSON', 'XML'];
                                 break;
                         }
                     }
+
+                    $operationConfig['responses']["default"] = [
+                        "description" => "Error payload.",
+                        "schema" => [
+                            "\$ref" => "#/definitions/Error"
+                        ]
+                    ];
 
                     foreach ($operationConfig['responses'] as &$opResponse) {
                         $opResponse['description'] = $opResponse['description'] ?? "";
@@ -187,6 +193,17 @@ class Generator extends CLI
 
                 $fullSchema['paths'][$path] = $pathConfig;
             }
+
+            $json['definitions']["Error"] = [
+                "type" => "object",
+                "required" => [
+                    "message", "code"
+                ],
+                "properties" => [
+                    "message" => ["type" => "string"],
+                    "code" => ["type" => "integer", "minimum" => 100, "maximum" => 600]
+                ]
+            ];
 
             foreach ($json['definitions'] as $definition => &$definitionConfig) {
                 $fullSchema['definitions'][$definition] = $definitionConfig;
@@ -197,12 +214,12 @@ class Generator extends CLI
         return $fullSchema;
     }
 
-    protected function swapNullable(array &$item) {
-        foreach($item as $key => &$value) {
-            if(is_array($value)) {
+    protected function swapNullable(array &$item)
+    {
+        foreach ($item as $key => &$value) {
+            if (is_array($value)) {
                 $this->swapNullable($value);
-            }
-            elseif($key == 'nullable') {
+            } elseif ($key == 'nullable') {
                 $item['x-nullable'] = $item['nullable'];
                 // unset($item['nullable']);
             }
