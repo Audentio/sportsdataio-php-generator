@@ -197,11 +197,11 @@ class Generator extends CLI
             $json['definitions']["Error"] = [
                 "type" => "object",
                 "required" => [
-                    "message", "code"
+                    "Description", "Code"
                 ],
                 "properties" => [
-                    "message" => ["type" => "string"],
-                    "code" => ["type" => "integer", "minimum" => 100, "maximum" => 600]
+                    "Description" => ["type" => "string"],
+                    "Code" => ["type" => "integer", "minimum" => 100, "maximum" => 600]
                 ]
             ];
 
