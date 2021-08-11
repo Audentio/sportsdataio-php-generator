@@ -200,8 +200,18 @@ class Generator extends CLI
                     "Description", "Code"
                 ],
                 "properties" => [
-                    "Description" => ["type" => "string"],
-                    "Code" => ["type" => "integer", "minimum" => 100, "maximum" => 600]
+                    "Description" => [
+                        "type" => "string",
+                        "nullable" => true,
+                        "x-nullable" => true
+                    ],
+                    "Code" => [
+                        "type" => "integer",
+                        "minimum" => 100,
+                        "maximum" => 600,
+                        "nullable" => true,
+                        "x-nullable" => true
+                    ]
                 ]
             ];
 
